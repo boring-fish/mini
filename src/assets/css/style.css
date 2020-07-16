@@ -1,0 +1,155 @@
+.layui-form-item select {
+  display: block;
+  width: 80%;
+  padding-left: 10px;
+  height: 38px;
+  line-height: 1.3;
+  line-height: 38px;
+  border-style: solid;
+  background-color: #fff;
+  border-radius: 2px;
+  border: none;
+}
+
+.vl-notify-alert {
+  z-index: 1000 !important;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.notify-alert {
+  z-index: 1000 !important;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.notify-alert ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: 20px;
+}
+
+.notify-alert ul li {
+  font-size: 14px;
+  width: 30%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-left: 20px;
+}
+
+.vl-notice-title {
+  background: white;
+  width: 451px;
+  position: absolute;
+  left: 35%;
+  top: 30%;
+  height: 71px;
+  line-height: 70px;
+  font-size: 20px;
+  padding-left: 20px;
+}
+
+.notice-title {
+  background: white;
+  width: 451px;
+  position: absolute;
+  left: 45%;
+  top: 30%;
+  height: 71px;
+  line-height: 70px;
+  font-size: 28px;
+  padding-left: 75px;
+}
+
+.vl-notify-content {
+  background: white;
+  width: 441px;
+  height: 109px;
+  position: absolute;
+  left: 35%;
+  top: 37%;
+  font-size: 20px;
+  line-height: 100px;
+  padding: 10px 10px 10px 20px;
+}
+
+.notify-content {
+  background: white;
+  width: 50%;
+  height: 74%;
+  position: absolute;
+  left: 29%;
+  top: 20%;
+  line-height: 50px;
+  padding: 10px 10px 10px 20px;
+}
+
+.notify-content-status {
+  background: white;
+  width: 30%;
+  height: 30%;
+  position: absolute;
+  left: 33%;
+  top: 28%;
+  line-height: 50px;
+  padding: 10px 10px 10px 20px;
+}
+
+.notify-content-status .layui-form-label {
+  padding: 15px 15px;
+}
+
+.notify-content-status .layui-form-item {
+  margin-top: 16px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.notify-content-status input {
+  margin-left: 6px;
+}
+
+.notify-btns {
+  background: white;
+  position: absolute;
+  left: 40%;
+  top: 90%;
+}
+
+.notify-content-status .notify-btns {
+  background: white;
+  position: absolute;
+  left: 26%;
+  top: 75%;
+}
+
+.vl-notify-btns {
+  background: white;
+  width: 451px;
+  height: 100px;
+  position: absolute;
+  left: 35%;
+  top: 48%;
+  line-height: 100px;
+  padding: 10px 10px 10px 10px;
+}
+
+.notify-btn-small {
+  background: #009688;
+  width: 100px;
+  height: 50px;
+  border: none;
+  line-height: 50px;
+  color: white;
+  cursor: pointer;
+}
