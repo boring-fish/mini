@@ -153,28 +153,47 @@ export default {
           .eq(this.checkedids)
           .attr("checked") == "checked"
       ) {
-        this.axios
-          .put(
-            "/release/unsubscribe?" +
-              "id=" +
-              this.detailtabconts.tabcont.id +
-              "&" +
-              "status=" +
-              this.checkedid
-          )
-          .then(function(res) {
-            let params = {
+           let params={
+       id:this.detailtabconts.tabcont.id,
+       status:this.checkedid
+      }
+       $api.DashboardApi.getStatus(params)
+      .then((res) => {
+        console.log(res);
+        let params = {
               reloading: res,
               statusclose: false
             };
-            that.$emit("reloading", res);
-          })
-          .catch(function(error) {
-            if (error.response.status == "401") {
+        that.$emit("reloading", res);
+      })
+      .catch(error => {
+         if (error.status == "401") {
             that.$cookies.remove("token");
             that.$router.push("/Login");
           }
-          });
+      });
+        // this.axios
+        //   .put(
+        //     "/release/unsubscribe?" +
+        //       "id=" +
+        //       this.detailtabconts.tabcont.id +
+        //       "&" +
+        //       "status=" +
+        //       this.checkedid
+        //   )
+        //   .then(function(res) {
+        //     let params = {
+        //       reloading: res,
+        //       statusclose: false
+        //     };
+        //     that.$emit("reloading", res);
+        //   })
+        //   .catch(function(error) {
+        //     if (error.response.status == "401") {
+        //     that.$cookies.remove("token");
+        //     that.$router.push("/Login");
+        //   }
+        //   });
       }
     },
     cancel() {

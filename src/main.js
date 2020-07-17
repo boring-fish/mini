@@ -8,9 +8,11 @@ import axios from 'axios'
 import VueCookies from 'vue-cookies'
 import layer from 'vue-layer'
 import base from './base'
+import { ApiService } from '@/api'
 Vue.use(base)
 Vue.use(VueCookies)
-
+let apiService = new ApiService();
+global.$api = apiService;
 require('layui-src/dist/css/layui.css')
 require('jquery/dist/jquery.min.js')
 require('layui-src/dist/layui.js')
@@ -28,21 +30,21 @@ Vue.config.productionTip = false
 Vue.prototype.axios = axios
 Vue.prototype.$layer = layer(Vue)
 axios.defaults.baseURL = process.env.VUE_APP_BASE_URL
-axios.interceptors.request.use(
-  function (config) {
-    // 在发送请求之前做些什么
-    if (config.method !== 'post') {
-      if (window.$cookies.get('token')) {
-        config.headers.Authorization = window.$cookies.get('token')
-      }
-    }
-    return config
-  },
-  function (error) {
-    // 对请求错误做些什么
-    return Promise.reject(error)
-  }
-)
+// axios.interceptors.request.use(
+//   function (config) {
+//     // 在发送请求之前做些什么
+//     if (config.method !== 'post') {
+//       if (window.$cookies.get('token')) {
+//         config.headers.Authorization = window.$cookies.get('token')
+//       }
+//     }
+//     return config
+//   },
+//   function (error) {
+//     // 对请求错误做些什么
+//     return Promise.reject(error)
+//   }
+// )
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

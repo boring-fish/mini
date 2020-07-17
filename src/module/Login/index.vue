@@ -5,7 +5,7 @@
       <img src="../../assets/img/bg2.jpg" alt />
     </div>
     <div class="login">
-      <h1>MINI-管理登录</h1>
+      <h1>xiaoMINI-管理登录</h1>
       <form class="layui-form">
         <div class="layui-form-item">
           <input
@@ -85,24 +85,42 @@ export default {
         password: $("input[name='password']").val()
       };
       let that = this;
-      this.axios
-        .post("/release/login", JSON.stringify(this.form))
-        .then(function(res) {
-          if (res.data.token) {
+      //
+       $api.DashboardApi.getArea(JSON.stringify(this.form))
+      .then((res) => {
+        console.log(res);
+         if (res.token) {
             that.$cookies.set(
               "token",
-              res.data.token,
-              new Date(res.data.expiresTime)
+              res.token,
+              new Date(res.expiresTime)
             );
             that.$router.push("/ContentArticle");
           }
-        })
-        .catch(function(error) {
-          if(error.response.data.code=='S99999'){
-              that.errormsg = "账号或者密码错误";
-          }
+      })
+      .catch(e => {
+        console.log(e);
+         that.errormsg = "账号或者密码错误";
+      });
+      // this.axios
+      //   .post("/release/login", JSON.stringify(this.form))
+      //   .then(function(res) {
+      //     if (res.data.token) {
+      //       that.$cookies.set(
+      //         "token",
+      //         res.data.token,
+      //         new Date(res.data.expiresTime)
+      //       );
+      //       that.$router.push("/ContentArticle");
+      //     }
+      //   })
+      //   .catch(function(error) {
+      //     if(error.response.data.code=='S99999'){
+      //         that.errormsg = "账号或者密码错误";
+      //     }
 
-        });
+      //   });
+
     }
   }
 };

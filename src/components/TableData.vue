@@ -153,37 +153,61 @@ export default {
     inittableContent() {
       let that = this;
       let token = that.$cookies.get("token");
-      this.axios
-        .get(
-          "/release/list?page=0&size=1000" +
-            "&" +
-            "time=" +
-            this.btnStstus.time +
-            "&" +
-            "activeName=" +
-            this.btnStstus.activeName +
-            "&" +
-            "status=" +
-            this.btnStstus.status +
-            "&" +
-            "productName=" +
-            this.btnStstus.productName
-        )
-        .then(function(res) {
-          that.tableData.tableContent = res.data;
+      let params={
+        page:0,
+        size:1000,
+        time:this.btnStstus.time ,
+        activeName:this.btnStstus.activeName,
+        status:this.btnStstus.status ,
+        productName:this.btnStstus.productName
+      }
+       $api.DashboardApi.getTableList(params)
+      .then((res) => {
+         that.tableData.tableContent = res;
           that.tableData.tableContent.sort(function(a, b) {
             return (
               Date.parse(b.registTime.replace(/-/g, "/")) -
               Date.parse(a.registTime.replace(/-/g, "/"))
             );
           });
-        })
-        .catch(function(error) {
-           if (error.response.status == "401") {
+      })
+      .catch(error => {
+         if (error.status == "401") {
             that.$cookies.remove("token");
             that.$router.push("/Login");
           }
-        });
+      });
+      // this.axios
+      //   .get(
+      //     "/release/list?page=0&size=1000" +
+      //       "&" +
+      //       "time=" +
+      //       this.btnStstus.time +
+      //       "&" +
+      //       "activeName=" +
+      //       this.btnStstus.activeName +
+      //       "&" +
+      //       "status=" +
+      //       this.btnStstus.status +
+      //       "&" +
+      //       "productName=" +
+      //       this.btnStstus.productName
+      //   )
+      //   .then(function(res) {
+      //     that.tableData.tableContent = res.data;
+      //     that.tableData.tableContent.sort(function(a, b) {
+      //       return (
+      //         Date.parse(b.registTime.replace(/-/g, "/")) -
+      //         Date.parse(a.registTime.replace(/-/g, "/"))
+      //       );
+      //     });
+      //   })
+      //   .catch(function(error) {
+      //      if (error.response.status == "401") {
+      //       that.$cookies.remove("token");
+      //       that.$router.push("/Login");
+      //     }
+      //   });
     },
     exportExcel() {
       let sourceOriginAmount = this.tableData.tableContent; // 需要导出的数据，可以动态获取
