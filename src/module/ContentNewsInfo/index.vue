@@ -1,17 +1,21 @@
 <template>
   <div id="contentNewsInfo">
     <!-- contentNewsInfo -->
-    <select-btn @changeCart="changeCollect"></select-btn>
-    <news-table :tablist="copyData"></news-table>
+    <select-btn @changeCart="changeCollect" />
+    <news-table :tablist="copyData" />
   </div>
 </template>
 
 <script>
   //消息选择
-  import SelectBtn from '@/components/SelectBtn'
+  import SelectBtn from '@/components/SelectBtn';
   // 信息列表
-  import NewsTable from '@/components/NewsTable'
+  import NewsTable from '@/components/NewsTable';
   export default {
+    components: {
+      SelectBtn,
+      NewsTable
+    },
     data() {
       return {
         newsTable: [{
@@ -33,33 +37,29 @@
         ],
         changelltyyy: "0",
         copyData: []
-      }
+      };
     },
-    components: {
-      SelectBtn,
-      NewsTable
+    mounted() {
+      this.copyData = this.newsTable;
     },
     methods: {
       changeCollect(msg) {
         if (msg === '1') {
           this.copyData = [];
-          console.log(this.newsTable)
+          console.log(this.newsTable);
           for (let index = 0; index < this.newsTable.length; index++) {
             const element = this.newsTable[index];
             if (element.collection == true) {
-              console.log(element)
-              this.copyData.push(element)
+              console.log(element);
+              this.copyData.push(element);
             }
           }
         } else {
           this.copyData = this.newsTable;
         }
       }
-    },
-    mounted() {
-      this.copyData = this.newsTable;
     }
-  }
+  };
 </script>
 
 <style>

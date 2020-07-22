@@ -1,5 +1,8 @@
 <template>
-  <div id="gotoPage" class="childrenBody">
+  <div
+    id="gotoPage"
+    class="childrenBody"
+  >
     <div class="panel_box row">
       <!-- <div class="panel col">
         <router-link to="/ContentNewsInfo">
@@ -58,8 +61,14 @@
       </div> -->
       <div class="panel col max_panel">
         <router-link to="/ContentArticle">
-          <div class="panel_icon" style="background-color:#2F4056;">
-            <i class="iconfont icon-text" data-icon="icon-text"></i>
+          <div
+            class="panel_icon"
+            style="background-color:#2F4056;"
+          >
+            <i
+              class="iconfont icon-text"
+              data-icon="icon-text"
+            />
           </div>
           <div class="panel_word allNews">
             <span>1</span>
@@ -70,7 +79,6 @@
       </div>
     </div>
   </div>
- 
 </template>
 
 <script>

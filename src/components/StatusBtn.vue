@@ -6,23 +6,23 @@
           <label class="layui-form-label">时间区域</label>
           <div class="layui-input-block">
             <input
+              id="starttime"
+              v-model="starttime"
               type="text"
               name="starttime"
               placeholder="请输入"
-              v-model="starttime"
-              @click="st"
               class="layui-input inputline"
-              id="starttime"
-            />
+              @click="st"
+            >
             <span>——</span>
             <input
+              id="endtime"
+              v-model="endtime"
               type="text"
               name="endtime"
-               v-model="endtime"
               placeholder="请输入"
               class="layui-input inputline"
-              id="endtime"
-            />
+            >
           </div>
         </div>
         <div class="layui-form-item">
@@ -34,26 +34,30 @@
               placeholder="请输入"
               autocomplete="off"
               class="layui-input"
-            />
+            >
           </div>
         </div>
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <button class="layui-btn"  @click="query()">查询</button>
+            <button
+              class="layui-btn"
+              @click="query()"
+            >
+              查询
+            </button>
           </div>
         </div> 
       </form>
-       <!-- <div class="layui-inline">
+      <!-- <div class="layui-inline">
         <a class="layui-btn layui-btn-normal newsAdd_btn">添加文章</a>
       </div> -->
-
     </blockquote>
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
-import laydate from 'layui-laydate'
+import $ from 'jquery';
+import laydate from 'layui-laydate';
 export default {
   data() {
     return {

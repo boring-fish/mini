@@ -8,13 +8,16 @@
             <label class="layui-form-label">活动名称</label>
             <div class="layui-input-block">
               <select name="activeName">
-                <option value>全部活动</option>
+                <option value>
+                  全部活动
+                </option>
                 <option
-                  :value="item"
                   v-for="(item, index) in selectList.activeName"
                   :key="index"
-                  >{{ item }}</option
+                  :value="item"
                 >
+                  {{ item }}
+                </option>
               </select>
             </div>
           </div>
@@ -22,13 +25,16 @@
             <label class="layui-form-label">产品名称</label>
             <div class="layui-input-block">
               <select name="productName">
-                <option value>全部产品</option>
+                <option value>
+                  全部产品
+                </option>
                 <option
-                  :value="item"
                   v-for="(item, index) in selectList.productName"
                   :key="index"
-                  >{{ item }}</option
+                  :value="item"
                 >
+                  {{ item }}
+                </option>
               </select>
             </div>
           </div>
@@ -36,13 +42,16 @@
             <label class="layui-form-label">活动时间</label>
             <div class="layui-input-block">
               <select name="time">
-                <option value>全部时间</option>
+                <option value>
+                  全部时间
+                </option>
                 <option
-                  :value="item"
                   v-for="(item, index) in selectList.time"
                   :key="index"
-                  >{{ item }}</option
+                  :value="item"
                 >
+                  {{ item }}
+                </option>
               </select>
             </div>
           </div>
@@ -51,13 +60,16 @@
             <label class="layui-form-label">订单状态</label>
             <div class="layui-input-block">
               <select name="status">
-                <option value>全部订单状态</option>
+                <option value>
+                  全部订单状态
+                </option>
                 <option
-                  :value="item.value"
                   v-for="(item, index) in statusList"
                   :key="index"
-                  >{{ item.name }}</option
+                  :value="item.value"
                 >
+                  {{ item.name }}
+                </option>
               </select>
             </div>
           </div>
@@ -88,9 +100,9 @@
               <input
                 type="button"
                 class="layui-btn"
-                @click="query()"
                 value="查询"
-              />
+                @click="query()"
+              >
             </div>
           </div>
         </form>
@@ -101,10 +113,10 @@
     </div>
     <div class="layui-form news_list">
       <table-data
-        :btnStstus="status"
-        @detailtabcont="detailtabconts"
+        :btn-ststus="status"
         :reloading="reloadings"
-      ></table-data>
+        @detailtabcont="detailtabconts"
+      />
     </div>
   </div>
 </template>

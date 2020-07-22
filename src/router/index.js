@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 // 一级组件
-import Home from '@/module/Home'
-import Login from '@/module/Login'
+import Home from '@/module/Home';
+import Login from '@/module/Login';
 // import Regist from '@/module/Regist'
 // 二级内容组件
 // import ContentHome from '@/module/ContentHome'
-import ContentArticle from '@/module/ContentArticle'
+import ContentArticle from '@/module/ContentArticle';
 // import ContentNewsInfo from '@/module/ContentNewsInfo'
 // import ContentAddPerson from '@/module/ContentAddPerson'
 // import ContentTotalPerson from '@/module/ContentTotalPerson'
@@ -16,7 +16,7 @@ import ContentArticle from '@/module/ContentArticle'
 // import PersonResource from '@/components/PersonResource'
 // import ChangePassword from '@/Components/ChangePassword'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -101,4 +101,4 @@ export default new Router({
     //   component: Regist
     // }
   ]
-})
+});

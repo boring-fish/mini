@@ -1,55 +1,81 @@
 <template>
   <div id="detailData">
     <div class="notify-main notify-alert">
-      <h2 class="title">自定义</h2>
+      <h2 class="title">
+        自定义
+      </h2>
       <div class="notify-content-status">
         <div class="layui-form-item">
           <label class="layui-form-label">订单状态</label>
           <div class="layui-input-block">
-            <span id="orderstatus" style="display: none"></span>
+            <span
+              id="orderstatus"
+              style="display: none"
+            />
             <!-- <input type="radio" name="state" id="state1" @click="initstatus('1')" title="报名成功" value="1">报名成功 -->
             <input
+              id="state0"
               type="radio"
               name="state"
-              id="state0"
-              @click="initstatus('0')"
               title="取消报名"
               value="0"
-            />
+              @click="initstatus('0')"
+            >
             取消报名
             <input
+              id="state1"
               type="radio"
               name="state"
-              id="state1"
-              @click="initstatus('2')"
               title="已中奖"
               value="2"
-            />已中奖
+              @click="initstatus('2')"
+            >已中奖
             <input
+              id="state2"
               type="radio"
               name="state"
-              id="state2"
-              @click="initstatus('3')"
               title="未中奖"
               value="3"
-            />未中奖
-              <input
+              @click="initstatus('3')"
+            >未中奖
+            <input
+              id="state3"
               type="radio"
               name="state"
-              id="state3"
-              @click="initstatus('7')"
               title="已过期"
               value="7"
-            />已过期
+              @click="initstatus('7')"
+            >已过期
           </div>
         </div>
-        <div class="layui-form-item" v-if="prizeType">
+        <div
+          v-if="prizeType"
+          class="layui-form-item"
+        >
           <label class="layui-form-label">中奖类别</label>
           <div class="layui-input-block">
-            <span id="orderstatus" style="display: none"></span>
-            <input type="radio" name="prize" title="一等奖" value="4" /> 一等奖&emsp;
-            <input type="radio" name="prize" title="二等奖" value="5" />二等奖
-            <input type="radio" name="prize" title="三等奖" value="6" />三等奖
+            <span
+              id="orderstatus"
+              style="display: none"
+            />
+            <input
+              type="radio"
+              name="prize"
+              title="一等奖"
+              value="4"
+            > 一等奖&emsp;
+            <input
+              type="radio"
+              name="prize"
+              title="二等奖"
+              value="5"
+            >二等奖
+            <input
+              type="radio"
+              name="prize"
+              title="三等奖"
+              value="6"
+            >三等奖
           </div>
         </div>
         <div class="notify-btns">
@@ -72,7 +98,7 @@
           >
             取消
           </button>
-          <a id="downloads"></a>
+          <a id="downloads" />
         </div>
       </div>
     </div>
@@ -81,8 +107,8 @@
 <script>
 import $ from "jquery";
 export default {
+  name: "Status",
   props: ["detailtabconts"],
-  name: "status",
   data() {
     return {
       detailobjs: {},
@@ -156,7 +182,7 @@ export default {
            let params={
        id:this.detailtabconts.tabcont.id,
        status:this.checkedid
-      }
+      };
        $api.DashboardApi.getStatus(params)
       .then((res) => {
         console.log(res);

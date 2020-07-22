@@ -1,16 +1,23 @@
 <template>
   <div id="contentHome">
-    <header-bar></header-bar>
+    <header-bar />
     <div>
-      <content-page @detailtabcont="tabconts" :reloading="reloading"></content-page>
+      <content-page
+        :reloading="reloading"
+        @detailtabcont="tabconts"
+      />
     </div>
-    <detail v-if="detailstatus" :detailtabconts="tabcont" @close="close"></detail>
+    <detail
+      v-if="detailstatus"
+      :detailtabconts="tabcont"
+      @close="close"
+    />
     <status
       v-if="status"
       :detailtabconts="tabcont"
       @statusclose="statusclose"
       @reloading="reloadingHandle"
-    ></status>
+    />
   </div>
 </template>
 
@@ -20,6 +27,12 @@ import HeaderBar from "@/components/HeaderBar";
 import detail from "@/components/detail";
 import status from "@/components/status";
 export default {
+  components: {
+    ContentPage,
+    HeaderBar,
+    detail,
+    status
+  },
   data() {
     return {
       tabcont: [],
@@ -27,12 +40,6 @@ export default {
       status: false,
       reloading: {}
     };
-  },
-  components: {
-    ContentPage,
-    HeaderBar,
-    detail,
-    status
   },
   methods: {
     tabconts(data) {

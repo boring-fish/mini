@@ -2,7 +2,10 @@
   <!-- * @author barry <email>* date 11/9/2017 * description 登陆组件 -->
   <div>
     <div class="video-player">
-      <img src="../../assets/img/bg2.jpg" alt />
+      <img
+        src="../../assets/img/bg2.jpg"
+        alt
+      >
     </div>
     <div class="login">
       <h1>xiaoMINI-管理登录</h1>
@@ -15,7 +18,7 @@
             lay-verify="required"
             type="text"
             autocomplete="off"
-          />
+          >
         </div>
         <div class="layui-form-item">
           <input
@@ -25,7 +28,7 @@
             lay-verify="required"
             type="password"
             autocomplete="off"
-          />
+          >
         </div>
         <!-- <div class="layui-form-item form_code">
           <input class="layui-input" name="code" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
@@ -38,10 +41,10 @@
           class="layui-btn login_btn"
           lay-submit
           lay-filter="login"
-          @click="btnsubmit()"
           value="登录"
           type="button"
-        />
+          @click="btnsubmit()"
+        >
         <span>{{ errormsg }}</span>
         <!-- </router-link> -->
         <!-- 没有账号？点击
@@ -66,18 +69,17 @@ export default {
       errormsg: ""
     };
   },
-  mounted() {
+  mounted() {},
+  beforeRouteEnter(to, from, next) {
+    let isLogin = window.$cookies.get("token");
+    if (isLogin) {
+      // 如果用户信息存在则往下执行。
+      next("/ContentArticle");
+    } else {
+      // 如果用户token不存在则跳转到login页面
+      next();
+    }
   },
-  beforeRouteEnter(to, from, next){
-      let isLogin = window.$cookies.get("token");
-      if (isLogin) {
-        // 如果用户信息存在则往下执行。
-        next('/ContentArticle');
-      } else {
-        // 如果用户token不存在则跳转到login页面
-          next();
-      }
-    },
   methods: {
     btnsubmit() {
       this.form = {
@@ -86,22 +88,18 @@ export default {
       };
       let that = this;
       //
-       $api.DashboardApi.getArea(JSON.stringify(this.form))
-      .then((res) => {
-        console.log(res);
-         if (res.token) {
-            that.$cookies.set(
-              "token",
-              res.token,
-              new Date(res.expiresTime)
-            );
+      $api.DashboardApi.getArea(JSON.stringify(this.form))
+        .then(res => {
+          console.log(res);
+          if (res.token) {
+            that.$cookies.set("token", res.token, new Date(res.expiresTime));
             that.$router.push("/ContentArticle");
           }
-      })
-      .catch(e => {
-        console.log(e);
-         that.errormsg = "账号或者密码错误";
-      });
+        })
+        .catch(e => {
+          console.log(e);
+          that.errormsg = "账号或者密码错误";
+        });
       // this.axios
       //   .post("/release/login", JSON.stringify(this.form))
       //   .then(function(res) {
@@ -120,7 +118,6 @@ export default {
       //     }
 
       //   });
-
     }
   }
 };

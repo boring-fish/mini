@@ -1,16 +1,27 @@
 <template>
   <div id="selectBtn">
     <blockquote class="layui-elem-quote news_search">
-			<div class="layui-inline selectMsg">
-				<select name="msgColl" lay-filter="selectMsg" @change="areadyCol" v-model="allCollect">
-					<option value="0" >全部</option>
-			    <option value="1" >已收藏</option>
-			  </select>
-			</div>
-			<div class="layui-inline">
-				<div class="layui-form-mid layui-word-aux">本页所有数据均为静态，刷新后所有操作无效</div>
-			</div>
-		</blockquote>
+      <div class="layui-inline selectMsg">
+        <select
+          v-model="allCollect"
+          name="msgColl"
+          lay-filter="selectMsg"
+          @change="areadyCol"
+        >
+          <option value="0">
+            全部
+          </option>
+          <option value="1">
+            已收藏
+          </option>
+        </select>
+      </div>
+      <div class="layui-inline">
+        <div class="layui-form-mid layui-word-aux">
+          本页所有数据均为静态，刷新后所有操作无效
+        </div>
+      </div>
+    </blockquote>
     <!-- </form> -->
   </div>
 </template>
@@ -26,7 +37,7 @@ export default {
   methods: {
     areadyCol() {
       // console.log(this.allCollect);
-      this.$emit('changeCart',this.allCollect)/*向父组件派发事件，同时传递参数event.target,后面的参数的个数不限*/
+      this.$emit('changeCart',this.allCollect);/*向父组件派发事件，同时传递参数event.target,后面的参数的个数不限*/
     }
   }
 };

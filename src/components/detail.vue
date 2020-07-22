@@ -1,13 +1,15 @@
 <template>
   <div id="detailData">
     <div class="notify-main notify-alert">
-      <h2 class="title">自定义</h2>
+      <h2 class="title">
+        自定义
+      </h2>
       <div class="notify-content">
         <ul>
           <li
-            class="titleLi"
             v-for="(item, key, index) in detailobjs"
             :key="index"
+            class="titleLi"
             :title="item"
           >
             <span class="title">{{ key }}:</span>
@@ -43,8 +45,8 @@
 <script>
 import $ from "jquery";
 export default {
+  name: "Detail",
   props: ["detailtabconts"],
-  name: "detail",
   data() {
     return {
       detailobjs: [],

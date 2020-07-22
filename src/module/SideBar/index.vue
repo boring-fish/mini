@@ -6,7 +6,10 @@
         <a class="img" title="我的头像"><img src="../../assets/logo.png"></a>
         <p>你好！<span class="userName"></span> 欢迎登录</p>
       </div> -->
-      <div class="navBar layui-side-scroll" style="height: 514px;">
+      <div
+        class="navBar layui-side-scroll"
+        style="height: 514px;"
+      >
         <ul class="layui-nav layui-nav-tree">
           <!-- <li class="layui-nav-item">
             <router-link to="/"><i class="iconfont icon-computer" data-icon="icon-computer"></i>
@@ -14,7 +17,11 @@
             </router-link>
             </li> -->
           <li class="layui-nav-item">
-            <router-link to="/ContentArticle"><i class="iconfont icon-text" data-icon="icon-text"></i><cite>报名记录</cite>
+            <router-link to="/ContentArticle">
+              <i
+                class="iconfont icon-text"
+                data-icon="icon-text"
+              /><cite>报名记录</cite>
             </router-link>
           </li>
         </ul>

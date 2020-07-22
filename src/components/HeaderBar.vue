@@ -4,9 +4,15 @@
       <!-- 顶部 -->
       <div class="layui-header header">
         <div class="layui-main">
-          <a href="#" class="logo">MINI</a>
+          <a
+            href="#"
+            class="logo"
+          >MINI</a>
           <!-- 显示/隐藏菜单 -->
-          <a href="javascript:;" class="iconfont hideMenu icon-menu1"></a>
+          <a
+            href="javascript:;"
+            class="iconfont hideMenu icon-menu1"
+          />
           <!-- 顶部右侧菜单 -->
           <ul class="layui-nav top_menu">
             <!-- <li class="layui-nav-item showNotice" id="showNotice" pc>
@@ -20,7 +26,12 @@
                 <!-- <img src="../assets/logo.png" class="layui-circle" width="35" height="35"> -->
                 <cite>admin</cite>
               </a>
-              <dl class="layui-nav-child" v-show="showPersonMenu" @mousemove="showMenu" @mouseleave="hideMenu">
+              <dl
+                v-show="showPersonMenu"
+                class="layui-nav-child"
+                @mousemove="showMenu"
+                @mouseleave="hideMenu"
+              >
                 <!-- <dd>
                   <router-link to="/PersonResource">
                     <a href="javascript:;" data-url="page/user/userInfo.html">
@@ -39,10 +50,13 @@
                 </dd> -->
                 <dd>
                   <!-- <router-link to="/Login"> -->
-                    <a  class="signOut" @click='logoutPage'>
-                      <i class="iconfont icon-loginout"></i>
-                      <cite>退出</cite>
-                    </a>
+                  <a
+                    class="signOut"
+                    @click="logoutPage"
+                  >
+                    <i class="iconfont icon-loginout" />
+                    <cite>退出</cite>
+                  </a>
                   <!-- </router-link> -->
                 </dd>
               </dl>
@@ -56,13 +70,13 @@
 
 <script>
   export default {
+    components: {},
     data() {
       return {
         // 控制显示个人资料的菜单
         showPersonMenu: false,
       };
     },
-    components: {},
     methods: {
       // 控制个人菜单显隐的方法
       showMenu() {

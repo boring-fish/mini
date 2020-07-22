@@ -1,21 +1,23 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
-import store from './store'
-import axios from 'axios'
-import VueCookies from 'vue-cookies'
-import layer from 'vue-layer'
-import base from './base'
-import { ApiService } from '@/api'
-Vue.use(base)
-Vue.use(VueCookies)
+import Vue from "vue";
+import App from "./App";
+import router from "./router";
+import store from "./store";
+import axios from "axios";
+import VueCookies from "vue-cookies";
+import layer from "vue-layer";
+import base from "./base";
+import { ApiService } from "@/api";
+Vue.use(base);
+
+Vue.use(VueCookies);
 let apiService = new ApiService();
+const global = window;
 global.$api = apiService;
-require('layui-src/dist/css/layui.css')
-require('jquery/dist/jquery.min.js')
-require('layui-src/dist/layui.js')
+require("layui-src/dist/css/layui.css");
+require("jquery/dist/jquery.min.js");
+require("layui-src/dist/layui.js");
 
 // require('layui-src/dist/layui.js')
 // require('layui-src/dist/layui.all.js')
@@ -24,12 +26,12 @@ require('layui-src/dist/layui.js')
 // require('../static/layui/layui.js')
 // require('../static/layui/css/layui.css')
 
-require('../static/main.css')
+require("../static/main.css");
 // 引入vuex插件
-Vue.config.productionTip = false
-Vue.prototype.axios = axios
-Vue.prototype.$layer = layer(Vue)
-axios.defaults.baseURL = process.env.VUE_APP_BASE_URL
+Vue.config.productionTip = false;
+Vue.prototype.axios = axios;
+Vue.prototype.$layer = layer(Vue);
+axios.defaults.baseURL = process.env.VUE_APP_BASE_URL;
 // axios.interceptors.request.use(
 //   function (config) {
 //     // 在发送请求之前做些什么
@@ -47,11 +49,11 @@ axios.defaults.baseURL = process.env.VUE_APP_BASE_URL
 // )
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el: "#app",
   router,
   store: store,
-  template: '<App/>',
   components: {
     App
-  }
-})
+  },
+  template: "<App/>"
+});

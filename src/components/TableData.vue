@@ -1,7 +1,10 @@
 <template>
   <div id="tableData">
     <div :class="$options.name">
-      <button @click="exportExcel" class="layui-btn layui-btn-mini">
+      <button
+        class="layui-btn layui-btn-mini"
+        @click="exportExcel"
+      >
         导出表格
       </button>
     </div>
@@ -41,21 +44,42 @@
     </table>
     <table class="layui-table layui-tables">
       <tbody class="news_content">
-        <tr v-for="(tabcont, indexs) in moreDel" :key="indexs">
+        <tr
+          v-for="(tabcont, indexs) in moreDel"
+          :key="indexs"
+        >
           <!-- <td>
             <div @click="CheckClick(indexs)" v-show="tabcont.checked" class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary"><i class="layui-icon"></i></div>
             <div @click="CheckClick(indexs)" v-show="!tabcont.checked" class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon"></i></div>
           </td>-->
-          <td class="tdlength">{{ tabcont.id }}</td>
-          <td class="tdlength">{{ tabcont.name }}</td>
-          <td class="tdlength">{{ tabcont.tel }}</td>
-          <td class="tdlength">{{ tabcont.activeName }}</td>
-          <td class="tdlength">{{ tabcont.productName }}</td>
-          <td class="tdlength">{{ tabcont.time }}</td>
+          <td class="tdlength">
+            {{ tabcont.id }}
+          </td>
+          <td class="tdlength">
+            {{ tabcont.name }}
+          </td>
+          <td class="tdlength">
+            {{ tabcont.tel }}
+          </td>
+          <td class="tdlength">
+            {{ tabcont.activeName }}
+          </td>
+          <td class="tdlength">
+            {{ tabcont.productName }}
+          </td>
+          <td class="tdlength">
+            {{ tabcont.time }}
+          </td>
           <!-- <td>{{tabcont.terminal}}</td> -->
-          <td class="tdlength">{{ tabcont.region }}</td>
-          <td class="tdlength">{{ tabcont.city }}</td>
-          <td class="tdlength">{{ tabcont.distributor }}</td>
+          <td class="tdlength">
+            {{ tabcont.region }}
+          </td>
+          <td class="tdlength">
+            {{ tabcont.city }}
+          </td>
+          <td class="tdlength">
+            {{ tabcont.distributor }}
+          </td>
           <td class="tdlength">
             <a class="news_collect">
               <!-- <i class="layui-icon"></i>
@@ -71,15 +95,15 @@
                       ? "三等奖"
                       : "已过期"
                     : tabcont.status == 5
-                    ? "二等奖"
-                    : tabcont.status == 4
-                    ? "一等奖"
-                    : "未中奖"
+                      ? "二等奖"
+                      : tabcont.status == 4
+                        ? "一等奖"
+                        : "未中奖"
                   : tabcont.status > 1
-                  ? "已中奖"
-                  : tabcont.status == 1
-                  ? "报名成功"
-                  : "取消报名"
+                    ? "已中奖"
+                    : tabcont.status == 1
+                      ? "报名成功"
+                      : "取消报名"
               }}</span>
             </a>
           </td>
@@ -109,6 +133,9 @@
 <script>
 import $ from "jquery";
 export default {
+  components: {
+    //  detail
+  },
   props: ["btnStstus", "reloading"],
   data() {
     return {
@@ -132,8 +159,48 @@ export default {
       loading: false
     };
   },
-  components: {
-    //  detail
+  computed: {
+    //计算是否全部的属性；
+    AllcheckClick() {
+      var array = this.tableData.tableContent;
+      // 根据元素checked的值判返回的数据值。
+      for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        if (element.checked === false) {
+          return {
+            flag: false
+          };
+        }
+      }
+      // 当数据为空的时候返回false；
+      if (this.tableData.tableContent.length === 0) {
+        return false;
+      }
+      // 若是没有false则全为true，返回true。
+      return {
+        flag: true
+      };
+    },
+    // 批量删除数据；只要是选中的状态就删除，
+    moreDel() {
+      var array = this.tableData.tableContent;
+      // alert(array.length)
+      var arr = [];
+      if (this.btnStstus.del === true) {
+        for (let i = 0; i < array.length; i++) {
+          const element = array[i];
+          if (element.checked !== true) {
+            arr.push(element);
+          }
+        }
+        this.btnStstus.del = false;
+      } else {
+        arr = array;
+      }
+      // 数据同步。
+      this.tableData.tableContent = arr;
+      return arr;
+    }
   },
   watch: {
     //监听value的变化，进行相应的操作即可
@@ -153,30 +220,30 @@ export default {
     inittableContent() {
       let that = this;
       let token = that.$cookies.get("token");
-      let params={
-        page:0,
-        size:1000,
-        time:this.btnStstus.time ,
-        activeName:this.btnStstus.activeName,
-        status:this.btnStstus.status ,
-        productName:this.btnStstus.productName
-      }
-       $api.DashboardApi.getTableList(params)
-      .then((res) => {
-         that.tableData.tableContent = res;
+      let params = {
+        page: 0,
+        size: 10000,
+        time: this.btnStstus.time,
+        activeName: this.btnStstus.activeName,
+        status: this.btnStstus.status,
+        productName: this.btnStstus.productName
+      };
+      $api.DashboardApi.getTableList(params)
+        .then(res => {
+          that.tableData.tableContent = res;
           that.tableData.tableContent.sort(function(a, b) {
             return (
               Date.parse(b.registTime.replace(/-/g, "/")) -
               Date.parse(a.registTime.replace(/-/g, "/"))
             );
           });
-      })
-      .catch(error => {
-         if (error.status == "401") {
+        })
+        .catch(error => {
+          if (error.status == "401") {
             that.$cookies.remove("token");
             that.$router.push("/Login");
           }
-      });
+        });
       // this.axios
       //   .get(
       //     "/release/list?page=0&size=1000" +
@@ -214,45 +281,45 @@ export default {
       this.loading = true; // 设置一个loading，生成Excel需要时间
       import("@/vendor/Export2Excel.js").then(excel => {
         // 导入js模块
-      let headTitle= [
-        { oldname: "id", name: "序号" },
-        { oldname: "name", name: "用户名" },
-        { oldname: "tel", name: "手机号码" },
-        { oldname: "terminal", name: "目的地" },
-        { oldname: "activeName", name: "活动名称" },
-        { oldname: "productName", name: "产品名称" },
-        { oldname: "time", name: "活动时间" },
-        { oldname: "region", name: "地区" },
-        { oldname: "city", name: "城市" },
-        { oldname: "distributor", name: "经销商" },
-        { oldname: "weibo", name: "微博" },
-        { oldname: "douyin", name: "抖音" },
-        { oldname: "redBook", name: "小红书" },
-        { oldname: "registTime", name: "报名时间" },
-        { oldname: "status", name: "报名状态" },
-        { oldname: "friendName", name: "朋友姓名" },
-        { oldname: "openid", name: "openid" },
-        { oldname: "imgUrl", name: "图片地址" },
-        { oldname: "recipient", name: "收件人" },
-        { oldname: "address", name: "详细地址" },
-        { oldname: "isMiniCarOwner", name: "是否为MINI车主" },
-        { oldname: "wechatAccount", name: "微信账号" },
-        { oldname: "carType", name: "车型" },
-        { oldname: "carSeries", name: "车系" },
-        { oldname: "score", name: "答题分数" },
-        { oldname: "participants", name: "参与人数" },
-        { oldname: "age", name: "年龄" },
-        { oldname: "punchTime", name: "打卡次数" },
-        { oldname: "remark", name: "备注" }
-      ]
+        let headTitle = [
+          { oldname: "id", name: "序号" },
+          { oldname: "name", name: "用户名" },
+          { oldname: "tel", name: "手机号码" },
+          { oldname: "terminal", name: "目的地" },
+          { oldname: "activeName", name: "活动名称" },
+          { oldname: "productName", name: "产品名称" },
+          { oldname: "time", name: "活动时间" },
+          { oldname: "region", name: "地区" },
+          { oldname: "city", name: "城市" },
+          { oldname: "distributor", name: "经销商" },
+          { oldname: "weibo", name: "微博" },
+          { oldname: "douyin", name: "抖音" },
+          { oldname: "redBook", name: "小红书" },
+          { oldname: "registTime", name: "报名时间" },
+          { oldname: "status", name: "报名状态" },
+          { oldname: "friendName", name: "朋友姓名" },
+          { oldname: "openid", name: "openid" },
+          { oldname: "imgUrl", name: "图片地址" },
+          { oldname: "recipient", name: "收件人" },
+          { oldname: "address", name: "详细地址" },
+          { oldname: "isMiniCarOwner", name: "是否为MINI车主" },
+          { oldname: "wechatAccount", name: "微信账号" },
+          { oldname: "carType", name: "车型" },
+          { oldname: "carSeries", name: "车系" },
+          { oldname: "score", name: "答题分数" },
+          { oldname: "participants", name: "参与人数" },
+          { oldname: "age", name: "年龄" },
+          { oldname: "punchTime", name: "打卡次数" },
+          { oldname: "remark", name: "备注" }
+        ];
         let tHeader = [];
         // 导出excel 的标题
         let filterVal = [];
-         headTitle.forEach(function (item,index) {
-               tHeader.push(item.name);
-               filterVal.push(item.oldname);
-            });
-            console.log(tHeader,filterVal);
+        headTitle.forEach(function(item, index) {
+          tHeader.push(item.name);
+          filterVal.push(item.oldname);
+        });
+        console.log(tHeader, filterVal);
         // 每个标题对应的字段
         const list = (sourceOriginAmount || []).map((item, key) => {
           // 通过 map 方法遍历，组装数据成上面的格式
@@ -299,9 +366,9 @@ export default {
             registTime: item.registTime,
             imgUrl: item.imgUrl,
             remark: item.remark,
-             recipient: item.recipient,
+            recipient: item.recipient,
             address: item.address,
-            isMiniCarOwner: item.isMiniCarOwner==1?'是':'否',
+            isMiniCarOwner: item.isMiniCarOwner == 1 ? "是" : "否",
             wechatAccount: item.wechatAccount,
             carType: item.carType,
             score: item.score,
@@ -374,49 +441,6 @@ export default {
         detailstatus: true
       };
       this.$emit("detailtabcont", params);
-    }
-  },
-  computed: {
-    //计算是否全部的属性；
-    AllcheckClick() {
-      var array = this.tableData.tableContent;
-      // 根据元素checked的值判返回的数据值。
-      for (let i = 0; i < array.length; i++) {
-        const element = array[i];
-        if (element.checked === false) {
-          return {
-            flag: false
-          };
-        }
-      }
-      // 当数据为空的时候返回false；
-      if (this.tableData.tableContent.length === 0) {
-        return false;
-      }
-      // 若是没有false则全为true，返回true。
-      return {
-        flag: true
-      };
-    },
-    // 批量删除数据；只要是选中的状态就删除，
-    moreDel() {
-      var array = this.tableData.tableContent;
-      // alert(array.length)
-      var arr = [];
-      if (this.btnStstus.del === true) {
-        for (let i = 0; i < array.length; i++) {
-          const element = array[i];
-          if (element.checked !== true) {
-            arr.push(element);
-          }
-        }
-        this.btnStstus.del = false;
-      } else {
-        arr = array;
-      }
-      // 数据同步。
-      this.tableData.tableContent = arr;
-      return arr;
     }
   }
 };

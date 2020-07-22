@@ -30,15 +30,15 @@ axios.interceptors.request.use(
     // 在发送请求之前做些什么
     if (config.method !== 'post') {
       if (window.$cookies.get('token')) {
-        config.headers.Authorization = window.$cookies.get('token')
+        config.headers.Authorization = window.$cookies.get('token');
       }
     }
-    return config
+    return config;
   },
   function (error) {
     // 对请求错误做些什么
     console.log(error);
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
 );
 

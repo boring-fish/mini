@@ -1,6 +1,9 @@
 <template>
   <div id="newsTable">
-    <table class="layui-table msg_box" lay-skin="line">
+    <table
+      class="layui-table msg_box"
+      lay-skin="line"
+    >
       <colgroup>
         <col width="45%">
         <col width="25%">
@@ -8,21 +11,44 @@
         <col>
       </colgroup>
       <tbody class="msgHtml">
-        <tr v-for="(news,index) in tablist" :key="news.id" >
-          <td class="msg_info"> <img :src="news.img" width="50" height="50"><input type="hidden" value="1111">
+        <tr
+          v-for="(news,index) in tablist"
+          :key="news.id"
+        >
+          <td class="msg_info">
+            <img
+              :src="news.img"
+              width="50"
+              height="50"
+            ><input
+              type="hidden"
+              value="1111"
+            >
             <div class="user_info">
-              <h2>{{news.name}}</h2>
-              <p> {{news.content}} </p>
+              <h2>{{ news.name }}</h2>
+              <p> {{ news.content }} </p>
             </div>
           </td>
-          <td class="msg_time">{{news.time}}</td>
-          <td class="msg_reply"><span v-show="news.reply">已回复</span></td>
+          <td class="msg_time">
+            {{ news.time }}
+          </td>
+          <td class="msg_reply">
+            <span v-show="news.reply">已回复</span>
+          </td>
           <td class="msg_opr"> 
-            <button v-show="!news.collection" @click="Collection(news)" class="layui-btn layui-btn-mini layui-btn-normal msg_collect">
+            <button
+              v-show="!news.collection"
+              class="layui-btn layui-btn-mini layui-btn-normal msg_collect"
+              @click="Collection(news)"
+            >
               <i class="layui-icon"></i> 收藏
             </button> 
-            <button v-show="news.collection" @click="Collection(news)" class="layui-btn layui-btn-mini layui-btn-normal msg_collect">
-              <i class="iconfont icon-star"></i> 已收藏
+            <button
+              v-show="news.collection"
+              class="layui-btn layui-btn-mini layui-btn-normal msg_collect"
+              @click="Collection(news)"
+            >
+              <i class="iconfont icon-star" /> 已收藏
             </button> 
             <a class="layui-btn layui-btn-mini reply_msg"><i class="layui-icon"></i> 回复
             </a> 
@@ -39,6 +65,10 @@ export default {
   data() {
     return {};
   },
+  computed:{
+     
+    
+  },
   mounted() {
    
   },
@@ -47,10 +77,6 @@ export default {
     Collection(data) {
       data.collection = !data.collection;
     }
-  },
-  computed:{
-     
-    
   }
 };
 </script>

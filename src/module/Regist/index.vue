@@ -5,29 +5,75 @@
    注册组件 -->
   <div>
     <div class="video-player">
-      <img src="./images/registbrg.jpg" alt="">
+      <img
+        src="./images/registbrg.jpg"
+        alt=""
+      >
     </div>
     <div class="login">
       <h1>layuiCMS-注册</h1>
       <form class="layui-form">
         <div class="layui-form-item">
-          <input class="layui-input" name="username" placeholder="用户名" lay-verify="required" type="text" autocomplete="off">
+          <input
+            class="layui-input"
+            name="username"
+            placeholder="用户名"
+            lay-verify="required"
+            type="text"
+            autocomplete="off"
+          >
         </div>
         <div class="layui-form-item">
-          <input class="layui-input" name="password" placeholder="密码" lay-verify="required" type="password" autocomplete="off">
+          <input
+            class="layui-input"
+            name="password"
+            placeholder="密码"
+            lay-verify="required"
+            type="password"
+            autocomplete="off"
+          >
         </div>
         <div class="layui-form-item">
-          <input class="layui-input" name="password" placeholder="确认密码" lay-verify="required" type="password" autocomplete="off">
+          <input
+            class="layui-input"
+            name="password"
+            placeholder="确认密码"
+            lay-verify="required"
+            type="password"
+            autocomplete="off"
+          >
         </div>
         <div class="layui-form-item form_code">
-          <input class="layui-input" name="code" placeholder="验证码" lay-verify="required" type="text" autocomplete="off">
-          <div class="code"><img src="./images/code.jpg" width="116" height="36"></div>
+          <input
+            class="layui-input"
+            name="code"
+            placeholder="验证码"
+            lay-verify="required"
+            type="text"
+            autocomplete="off"
+          >
+          <div class="code">
+            <img
+              src="./images/code.jpg"
+              width="116"
+              height="36"
+            >
+          </div>
         </div>
         <router-link to="/Login">
-          <button class="layui-btn login_btn" lay-submit="" lay-filter="login">注册</button> 
+          <button
+            class="layui-btn login_btn"
+            lay-submit=""
+            lay-filter="login"
+          >
+            注册
+          </button> 
         </router-link>有账号？点击
         <router-link to="/Login">
-          <a class="layui-tx-red" href="">登录</a>
+          <a
+            class="layui-tx-red"
+            href=""
+          >登录</a>
         </router-link>
       </form>
     </div>
