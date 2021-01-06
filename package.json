@@ -12,7 +12,7 @@
 
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "file-saver": "^2.0.2",
     "jquery": "^3.5.1",
     "layui-laydate": "^5.0.9",
